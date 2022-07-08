@@ -1,6 +1,6 @@
 {
   "name": "goal-app-rn-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
-    "@types/react-native": "~0.66.13",
+    "@types/react-native": "^0.66.19",
     "typescript": "~4.3.5"
   },
   "private": true
