@@ -7,10 +7,12 @@ import styles from "./app.styles";
 import GoalInput from "./components/goal-input";
 
 export default function App() {
+  const [isInputVisible, setIsInputVisible] = useState(false);
   const [goals, setGoals] = useState<Omit<GoalItem, "onPress">[]>([]);
 
   const onGoalAdd = (goal: string) => {
     setGoals((prev) => [...prev, { id: Math.random().toString(), text: goal }]);
+    setIsInputVisible(false);
   };
 
   const onGoalDelete = (id: string) => {
@@ -19,9 +21,18 @@ export default function App() {
 
   const onGoalsClear = () => setGoals([]);
 
+  const onInputShow = () => setIsInputVisible(true);
+
+  const onInputHide = () => setIsInputVisible(false);
+
   return (
     <View style={styles.container}>
-      <GoalInput onAddCallback={onGoalAdd} />
+      <Button title="Add new goal" onPress={onInputShow} color="#5e0acc" />
+      <GoalInput
+        isVisible={isInputVisible}
+        onAddCallback={onGoalAdd}
+        onCancelCallback={onInputHide}
+      />
 
       <View style={styles.goals_container}>
         {goals.length ? (

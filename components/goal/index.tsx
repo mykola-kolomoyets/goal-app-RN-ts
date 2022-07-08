@@ -11,7 +11,11 @@ export type GoalItem = {
 const Goal = ({ text, onPress }: GoalItem) => {
   return (
     <View style={styles.goal_item}>
-      <Pressable onPress={onPress} android_ripple={{ color: "#cccccc" }}>
+      <Pressable
+        style={({ pressed }) => pressed && styles.ios_pressed}
+        onPress={onPress}
+        android_ripple={styles.android_ripple}
+      >
         <View>
           <Text style={styles.goal_item_text}>{text}</Text>
         </View>

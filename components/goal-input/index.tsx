@@ -6,16 +6,24 @@ import {
   Text,
   NativeSyntheticEvent,
   TextInputChangeEventData,
-  GestureResponderEvent,
+  Modal,
+  Image,
+  KeyboardAvoidingView,
 } from "react-native";
 
 import styles from "./goal-input.style";
 
 type GoalInputProps = {
+  isVisible: boolean;
   onAddCallback: (goal: string) => void;
+  onCancelCallback: () => void;
 };
 
-const GoalInput = ({ onAddCallback }: GoalInputProps) => {
+const GoalInput = ({
+  onAddCallback,
+  onCancelCallback,
+  isVisible,
+}: GoalInputProps) => {
   const [currentGoal, setCurrentGoal] = useState("");
 
   const onGoalChange = (
@@ -26,21 +34,38 @@ const GoalInput = ({ onAddCallback }: GoalInputProps) => {
 
   const onAddGoal = () => {
     onAddCallback && onAddCallback(currentGoal);
+    console.log("added");
 
     setCurrentGoal("");
   };
   return (
-    <View style={styles.input_container}>
-      <TextInput
-        style={styles.input_field}
-        placeholder="Enter your goals"
-        value={currentGoal}
-        onChange={onGoalChange}
-      />
-      <Pressable style={styles.input_submit} onPress={onAddGoal}>
-        <Text>Add goal</Text>
-      </Pressable>
-    </View>
+    <Modal visible={isVisible} animationType="slide">
+      <KeyboardAvoidingView style={styles.input_container} behavior={"height"}>
+        <Image
+          style={styles.input_image}
+          source={require("./../../assets/images/goal.png")}
+        />
+        <TextInput
+          style={styles.input_field}
+          placeholder="Enter your goals"
+          value={currentGoal}
+          onChange={onGoalChange}
+        />
+        <View style={styles.input_buttons}>
+          <Pressable
+            style={styles.input_submit}
+            onPress={onAddGoal}
+            disabled={!currentGoal.length}
+          >
+            <Text>Add goal</Text>
+          </Pressable>
+
+          <Pressable style={styles.input_cancel} onPress={onCancelCallback}>
+            <Text style={styles.input_cancel_text}>Cancel</Text>
+          </Pressable>
+        </View>
+      </KeyboardAvoidingView>
+    </Modal>
   );
 };
 

@@ -12,4 +12,12 @@ export default StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
+
+  android_ripple: {
+    color: "#210644",
+  },
+
+  ios_pressed: {
+    opacity: 0.5,
+  },
 });
