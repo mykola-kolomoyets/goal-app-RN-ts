@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Text, View, Button, FlatList } from "react-native";
+import { Fragment, useState } from "react";
+import { Text, View, Button, FlatList, SafeAreaView } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 import Goal, { GoalItem } from "./components/goal";
 
@@ -26,36 +27,42 @@ export default function App() {
   const onInputHide = () => setIsInputVisible(false);
 
   return (
-    <View style={styles.container}>
-      <Button title="Add new goal" onPress={onInputShow} color="#5e0acc" />
-      <GoalInput
-        isVisible={isInputVisible}
-        onAddCallback={onGoalAdd}
-        onCancelCallback={onInputHide}
-      />
-
-      <View style={styles.goals_container}>
-        {goals.length ? (
-          <FlatList
-            data={goals}
-            keyExtractor={(item) => item.id}
-            renderItem={(item) => (
-              <Goal {...item.item} onPress={() => onGoalDelete(item.item.id)} />
-            )}
-            alwaysBounceVertical={false}
-          />
-        ) : (
-          <Text>No items</Text>
-        )}
-      </View>
-
-      <View>
-        <Button
-          disabled={!goals.length}
-          title="Clear goals"
-          onPress={onGoalsClear}
+    <Fragment>
+      <StatusBar style="inverted" />
+      <SafeAreaView style={styles.container}>
+        <Button title="Add new goal" onPress={onInputShow} color="#a065ec" />
+        <GoalInput
+          isVisible={isInputVisible}
+          onAddCallback={onGoalAdd}
+          onCancelCallback={onInputHide}
         />
-      </View>
-    </View>
+
+        <View style={styles.goals_container}>
+          {goals.length ? (
+            <FlatList
+              data={goals}
+              keyExtractor={(item) => item.id}
+              renderItem={(item) => (
+                <Goal
+                  {...item.item}
+                  onPress={() => onGoalDelete(item.item.id)}
+                />
+              )}
+              alwaysBounceVertical={false}
+            />
+          ) : (
+            <Text>No items</Text>
+          )}
+        </View>
+
+        <View>
+          <Button
+            disabled={!goals.length}
+            title="Clear goals"
+            onPress={onGoalsClear}
+          />
+        </View>
+      </SafeAreaView>
+    </Fragment>
   );
 }

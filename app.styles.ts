@@ -2,9 +2,10 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    paddingTop: 50,
-    paddingHorizontal: 16,
     flex: 1,
+    paddingVertical: 50,
+    paddingHorizontal: 16,
+    // backgroundColor: "#1e085a",
   },
 
   //* upper part

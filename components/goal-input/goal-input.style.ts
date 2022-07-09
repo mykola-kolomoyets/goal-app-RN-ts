@@ -22,8 +22,10 @@ export default StyleSheet.create({
   input_field: {
     width: "100%",
     borderWidth: 1,
-    borderColor: "#cccccc",
-    backgroundColor: "#ffffff",
+    borderColor: "#e4d0ff",
+    borderRadius: 6,
+    backgroundColor: "#e4d0ff",
+    color: "#120438",
     marginBottom: 24,
     padding: 8,
     minHeight: 50,
@@ -44,6 +46,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     minHeight: 50,
     marginRight: 16,
+    borderRadius: 6,
   },
 
   input_cancel: {
@@ -54,6 +57,7 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     minHeight: 50,
+    borderRadius: 6,
   },
 
   input_cancel_text: {
